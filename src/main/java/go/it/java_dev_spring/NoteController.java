@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -21,19 +22,19 @@ public class NoteController {
     }
 
     @PostMapping("/delete")
-    public RedirectView delete(long id) {
+    public RedirectView delete(@RequestParam long id) {
         noteService.deleteById(id);
         return new RedirectView("/note/list");
     }
     @GetMapping("/edit")
-    public ModelAndView edit(long id){
+    public ModelAndView edit(@RequestParam long id){
         ModelAndView result = new ModelAndView("addAndEdit");
         result.addObject("note", noteService.getById(id));
         return result;
     }
 
     @PostMapping("/edit")
-    public RedirectView edit(long id, String title, String content) {
+    public RedirectView edit(@RequestParam long id, @RequestParam String title, @RequestParam String content) {
          Note note = new Note();
          note.setId(id);
          note.setTitle(title);
@@ -49,7 +50,7 @@ public class NoteController {
     }
 
     @PostMapping("/add")
-    public RedirectView add( String title, String content){
+    public RedirectView add( @RequestParam String title, @RequestParam String content){
         Note note = new Note();
         note.setTitle(title);
         note.setContent(content);
