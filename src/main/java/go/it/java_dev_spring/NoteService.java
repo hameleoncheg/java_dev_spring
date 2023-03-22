@@ -1,43 +1,42 @@
 package go.it.java_dev_spring;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@RequiredArgsConstructor
 @Service
 public class NoteService {
 
-    private Map<Long, Note> notes = new HashMap<>();
+    private final NoteRepository noteRepository;
     private Random random = new Random();
 
     public List<Note> listAll() {
-        return new ArrayList<>(notes.values());
+        return noteRepository.findAll();
     }
 
     public Note add(Note note) {
         long id = random.nextLong();
         note.setId(id);
-        notes.put(id, note);
+        noteRepository.save(note);
         return note;
     }
 
     public void deleteById(long id) {
-        if (!notes.containsKey(id)) {
-            throw new IllegalArgumentException("Note with id=" + id + " does not exist");
-        }
-        notes.remove(id);
+        noteRepository.deleteById(id);
     }
 
     public void update(Note note) {
         long id = note.getId();
-        if (!notes.containsKey(id)) {
+        if (!noteRepository.existsById(id)) {
             throw new IllegalArgumentException("Note with id=" + id + " does not exist");
         }
-        notes.put(id, note);
+        noteRepository.save(note);
     }
 
     public Note getById(long id) {
-        Note note = notes.get(id);
+        Note note = noteRepository.getReferenceById(id);
         if (note == null) {
             throw new IllegalArgumentException("Note with id=" + id + " does not exist");
         }
