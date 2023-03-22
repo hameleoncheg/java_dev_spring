@@ -1,4 +1,4 @@
-package go.it.java_dev_spring;
+package go.it.java_dev_spring.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

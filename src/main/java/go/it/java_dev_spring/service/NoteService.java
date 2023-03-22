@@ -1,5 +1,7 @@
-package go.it.java_dev_spring;
+package go.it.java_dev_spring.service;
 
+import go.it.java_dev_spring.entity.Note;
+import go.it.java_dev_spring.repository.NoteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +12,7 @@ import java.util.*;
 public class NoteService {
 
     private final NoteRepository noteRepository;
-    private Random random = new Random();
+    private final Random random = new Random();
 
     public List<Note> listAll() {
         return noteRepository.findAll();

@@ -1,5 +1,7 @@
-package go.it.java_dev_spring;
+package go.it.java_dev_spring.endpoint;
 
+import go.it.java_dev_spring.entity.Note;
+import go.it.java_dev_spring.service.NoteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

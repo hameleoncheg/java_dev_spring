@@ -1,5 +1,6 @@
-package go.it.java_dev_spring;
+package go.it.java_dev_spring.repository;
 
+import go.it.java_dev_spring.entity.Note;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
